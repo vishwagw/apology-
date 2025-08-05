@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #d32f2f;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #c62828;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .heart {
+            color: #e91e63;
+            font-size: 40px;
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+        
+        @keyframes beat {
+            to {
+                transform: scale(1.2);
+            }
+        }
+        
+        button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+        
+        .flowers {
+            margin: 20px 0;
+            font-size: 24px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #forgivenessMessage {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flowers">🌹🌷🌸💐</div>
+        <h1>I'm So Sorry, <span id="namePlaceholder">My favourite person in the world & my future Wifey</span> <span class="heart">❤️</span></h1>
+        
+        <p>I know I messed up and I truly regret it. You mean the world to me and I hate that I've hurt you.</p>
+        
+        <p>I promise to do better because you deserve nothing but the best. Please forgive me.</p>
+        
+        <div class="flowers">💖🌺🌻🥀</div>
+        
+        <button id="apologyButton">Click to See How Much I Love You</button>
+        
+        <div id="loveMessage" class="hidden">
+            <p>Every day with you is a gift I don't want to lose. I appreciate you more than words can say.</p>
+            <p>Will you forgive me?</p>
+            <button id="forgiveButton">Yes, I Forgive You</button>
+            <button id="notForgiveButton">Not Yet</button>
+        </div>
+        
+        <div id="forgivenessMessage" class="hidden">
+            <p>Thank you for your forgiveness! I love you so much! ❤️</p>
+            <div class="flowers">🌹🌹🌹🌹</div>
+        </div>
+        
+        <div id="tryHarderMessage" class="hidden">
+            <p>I understand. I'll keep trying to earn your forgiveness because you're worth it.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('apologyButton').addEventListener('click', function() {
+            this.classList.add('hidden');
+            document.getElementById('loveMessage').classList.remove('hidden');
+        });
+        
+        document.getElementById('forgiveButton').addEventListener('click', function() {
+            document.getElementById('loveMessage').classList.add('hidden');
+            document.getElementById('forgivenessMessage').classList.remove('hidden');
+        });
+        
+        document.getElementById('notForgiveButton').addEventListener('click', function() {
+            document.getElementById('loveMessage').classList.add('hidden');
+            document.getElementById('tryHarderMessage').classList.remove('hidden');
+            
+            // Show the apology button again after 3 seconds
+            setTimeout(function() {
+                document.getElementById('apologyButton').classList.remove('hidden');
+                document.getElementById('tryHarderMessage').classList.add('hidden');
+            }, 3000);
+        });
+        
+        // You can personalize the name by changing the URL parameter
+        // For example: apology.html?name=Sarah
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        if (name) {
+            document.getElementById('namePlaceholder').textContent = name;
+        }
+    </script>
+</body>
+</html>
